@@ -7,14 +7,15 @@ on:
   workflow_dispatch:
 
 jobs:
-  build_deploy:
-    name: Build & deploy
+  build:
+    name: Build
     runs-on: ubuntu-latest
-    environment: Production
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
+
       - name: Build
         run: ./gradlew build
