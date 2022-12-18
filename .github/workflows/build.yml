@@ -1,10 +1,9 @@
 name: Build
 
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+on: [ push, workflow_dispatch ]
+
+env:
+  GRADLE_BUILD_ACTION_CACHE_DEBUG_ENABLED: true
 
 jobs:
   build:
@@ -20,5 +19,7 @@ jobs:
       - name: Build
         run: ./gradlew build
 
-      - name: Print configuration cache report
-        run: find 'build/reports/configuration-cache' -iname 'configuration-cache-report.html' -exec cat {} + || true
+      - uses: actions/upload-artifact@v3
+        with:
+          name: configuration-cache-report
+          path: build/reports/configuration-cache/**/configuration-cache-report.html
