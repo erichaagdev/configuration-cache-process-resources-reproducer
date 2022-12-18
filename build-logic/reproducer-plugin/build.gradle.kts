@@ -1,6 +1,5 @@
 plugins {
     `java-gradle-plugin`
-    kotlin("jvm") version embeddedKotlinVersion
 }
 
 repositories {
